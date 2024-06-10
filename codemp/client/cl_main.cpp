@@ -36,6 +36,7 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 #include "cl_lan.h"
 #include "snd_local.h"
 #include "sys/sys_loadlib.h"
+#include "MBII/TimingInfo.h"
 
 cvar_t	*cl_renderer;
 
@@ -104,6 +105,7 @@ cvar_t	*cl_consoleKeys;
 cvar_t	*cl_consoleUseScanCode;
 
 cvar_t  *cl_lanForcePackets;
+cvar_t *cl_TimingInfo;
 
 vec3_t cl_windVec;
 
@@ -2782,6 +2784,7 @@ void CL_Init( void ) {
 	// ~ and `, as keys and characters
 	cl_consoleKeys = Cvar_Get( "cl_consoleKeys", "~ ` 0x7e 0x60 0xb2", CVAR_ARCHIVE, "Which keys are used to toggle the console");
 	cl_consoleUseScanCode = Cvar_Get( "cl_consoleUseScanCode", "1", CVAR_ARCHIVE, "Use native console key detection" );
+	cl_TimingInfo = Cvar_Get("cl_TimingInfo", "0", CVAR_ARCHIVE, "Print useful player animation timing");
 
 	// userinfo
 	Cvar_Get ("name", "Padawan", CVAR_USERINFO | CVAR_ARCHIVE_ND, "Player name" );
@@ -2853,6 +2856,7 @@ void CL_Init( void ) {
 
 	CL_GenerateQKey();
 	CL_UpdateGUID( NULL, 0 );
+	TimingInfo::InitializeTables();
 
 //	Com_Printf( "----- Client Initialization Complete -----\n" );
 }

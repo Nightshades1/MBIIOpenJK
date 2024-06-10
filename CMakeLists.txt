@@ -1,4 +1,4 @@
-#============================================================================
+﻿#============================================================================
 # Copyright (C) 2013 - 2018, OpenJK contributors
 # 
 # This file is part of the OpenJK source code.
@@ -214,6 +214,17 @@ if(MSVC)
 
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /arch:SSE2")
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /MP")
+	
+
+	#let's use C++20 and disable conformance
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++20")
+	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /permissive")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /permissive")
+
+	#Enable Edit&Continue and disable Safe Exception Handler since it make the game freeze,
+	set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /ZI")
+	set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} /ZI")
+	set(CMAKE_EXE_LINKER_FLAGS_DEBUG "${CMAKE_EXE_LINKER_FLAGS_DEBUG} /SAFESEH:NO")
 
 	# We don't try to control symbol visibility under MSVC.
 	set(OPENJK_VISIBILITY_FLAGS "")

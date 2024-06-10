@@ -468,8 +468,10 @@ if(BuildMPEngine)
 		"${MPDir}/client/snd_mp3.h"
 		"${MPDir}/client/snd_music.cpp"
 		"${MPDir}/client/snd_music.h"
+		"${MPDir}/client/MBII/TimingInfo.cpp"
+		"${MPDir}/client/MBII/TimingInfo.h"
 		)
-	source_group("client" FILES ${MPEngineClientFiles})
+	source_group(${MPEngineClientFiles})
 	set(MPEngineFiles ${MPEngineFiles} ${MPEngineClientFiles})
 
 	set(MPEngineRatlFiles

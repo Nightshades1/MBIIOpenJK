@@ -27,6 +27,7 @@ along with this program; if not, see <http://www.gnu.org/licenses/>.
 #include "client.h"
 #include "cl_cgameapi.h"
 #include "qcommon/stringed_ingame.h"
+#include "MBII/TimingInfo.h"
 
 #ifdef USE_INTERNAL_ZLIB
 #include "zlib/zlib.h"
@@ -347,6 +348,10 @@ void CL_ParseSnapshot( msg_t *msg ) {
 	}
 	// save the frame off in the backup array for later delta comparisons
 	cl.snapshots[cl.snap.messageNum & PACKET_MASK] = cl.snap;
+	if (cl_TimingInfo->integer)
+	{
+		TimingInfo::PrintInfos();
+	}
 
 	if (cl_shownet->integer == 3) {
 		Com_Printf( "   snapshot:%i  delta:%i  ping:%i\n", cl.snap.messageNum,
