@@ -337,6 +337,12 @@ void CL_ParseSnapshot( msg_t *msg ) {
 
 	// copy to the current good spot
 	cl.snap = newSnap;
+
+	if (cl_TimingInfo->integer && old != nullptr)
+	{
+		TimingInfo::PrintInfos(old);
+	}
+
 	cl.snap.ping = 999;
 	// calculate ping time
 	for ( i = 0 ; i < PACKET_BACKUP ; i++ ) {
@@ -348,10 +354,6 @@ void CL_ParseSnapshot( msg_t *msg ) {
 	}
 	// save the frame off in the backup array for later delta comparisons
 	cl.snapshots[cl.snap.messageNum & PACKET_MASK] = cl.snap;
-	if (cl_TimingInfo->integer)
-	{
-		TimingInfo::PrintInfos();
-	}
 
 	if (cl_shownet->integer == 3) {
 		Com_Printf( "   snapshot:%i  delta:%i  ping:%i\n", cl.snap.messageNum,

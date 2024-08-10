@@ -30,5 +30,5 @@ public:
 	static saberMoveData_s SaberMoveData_Table_Beta[];
 	static Animation_Table_s Anim_Table[];
 	static Animation_Table_s Anim_Table_Beta[];
-	static void PrintInfos();
+	static void PrintInfos(clSnapshot_t *OldSnap);
 };
